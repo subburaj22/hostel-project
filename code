@@ -1,0 +1,22 @@
+import pandas as pd
+from sklearn.feature_extraction.text import CountVectorizer
+
+# Load the dataset
+file_path = 'news_dataset.csv'  # Replace with your CSV file path
+data = pd.read_csv(file_path)
+
+# Display the first few rows of the dataset
+print("First few rows of the dataset:")
+print(data.head())
+
+# Preprocess text data
+text_data = data['text'].fillna('')  # Fill NaN values with an empty string
+
+# Initialize CountVectorizer
+vectorizer = CountVectorizer(stop_words='english')  # Remove common English stopwords
+
+# Fit and transform the text data
+X = vectorizer.fit_transform(text_data)
+
+# Display the shape of the resulting matrix
+print("\nShape of the matrix after vectorization:", X.shape)
